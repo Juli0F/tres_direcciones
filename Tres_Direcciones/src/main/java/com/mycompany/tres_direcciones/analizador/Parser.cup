@@ -1,0 +1,81 @@
+ 
+package com.mycompany.tres_direcciones.analizador;
+
+import com.mycompany.tres_direcciones.abs.Instruccion;
+import com.mycompany.tres_direcciones.expresion.Asignacion;
+import com.mycompany.tres_direcciones.expresion.Division;
+import com.mycompany.tres_direcciones.expresion.Expresion;
+import com.mycompany.tres_direcciones.expresion.Identificador;
+import com.mycompany.tres_direcciones.expresion.Multiplicacion;
+import com.mycompany.tres_direcciones.expresion.Primitivo;
+import com.mycompany.tres_direcciones.expresion.Resta;
+import com.mycompany.tres_direcciones.expresion.Suma;
+import com.mycompany.tres_direcciones.expresion.UMenos;
+import java.util.ArrayList;
+import java.util.List;
+import java_cup.runtime.*;
+
+
+parser code {:
+	public void syntax_error(Symbol s) {
+
+  report_error("Error de sintaxis en linea " + s.left, null);
+}
+
+public void unrecovered_syntax_error(Symbol s) throws
+  java.lang.Exception {
+  report_fatal_error("", null);
+}
+	:};
+
+terminal NUMERO;
+terminal SUMA;
+terminal MENOS;
+terminal MULTIPLICACION;
+terminal DIV;
+terminal String ID;
+terminal IGUAL;
+terminal PAR_A;
+terminal PAR_C;
+terminal SEMICOLON;
+terminal UMINUS;
+
+nonterminal inicio;
+nonterminal List<Instruccion> instrucciones;
+nonterminal Instruccion instruccion;
+nonterminal Asignacion asignacion;
+nonterminal Expresion e;
+nonterminal Primitivo f;
+
+precedence left SUMA, MENOS;
+precedence left MULTIPLICACION, DIV; 
+precedence left UMINUS;
+
+
+start with inicio;
+
+inicio ::= instrucciones:i {:RESULT = i; :};
+instrucciones ::= instrucciones:lst instruccion:i {: lst.add(i); RESULT = lst; :} 
+				| instruccion:i {: List<Instruccion> ins = new ArrayList<>(); ins.add(i); RESULT = ins; :}
+				;
+
+instruccion  ::= asignacion:a SEMICOLON  {: RESULT = a; :}
+				;
+
+
+
+asignacion ::= ID:id IGUAL e:ex {: RESULT = new Asignacion(id,ex,idleft,idright);:}
+			;
+//Operador operador, Object izq, Object der, int fila, int columna
+e    ::= e:exp SUMA e:exp1 			  {: RESULT = new Suma(exp,exp1,expleft,expright); :}
+		| e:exp MULTIPLICACION e:exp1 {: RESULT = new Multiplicacion(exp,exp1,expleft,expright); :}
+		| e:exp MENOS e:exp1 		  {: RESULT = new Resta(exp,exp1,expleft,expright); :}
+		| e:exp DIV e:exp1 			  {: RESULT = new Division(exp,exp1,expleft,expright); :}
+		| UMINUS e:exp 			      {: RESULT = new UMenos(exp,expleft,expright); :} 
+		| ID:id  		  			  {: RESULT = new Identificador(id,idleft,idright); :} 
+		| PAR_A e:exp PAR_C			  {: RESULT = exp;:}
+		| f:exp 					  {: RESULT = exp;:}
+		;
+		//Object valor , int fila, int columna
+
+f    ::= NUMERO:exp {:RESULT = new Primitivo(String.valueOf(exp) , expleft,expright);:};
