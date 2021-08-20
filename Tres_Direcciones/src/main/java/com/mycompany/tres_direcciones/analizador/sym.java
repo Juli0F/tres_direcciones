@@ -9,9 +9,9 @@ package com.mycompany.tres_direcciones.analizador;
 public class sym {
   /* terminals */
   public static final int PAR_A = 9;
-  public static final int UMINUS = 12;
   public static final int MENOS = 4;
   public static final int SUMA = 3;
+  public static final int UMENOS = 12;
   public static final int MULTIPLICACION = 5;
   public static final int EOF = 0;
   public static final int NUMERO = 2;
@@ -34,7 +34,7 @@ public class sym {
   "PAR_A",
   "PAR_C",
   "SEMICOLON",
-  "UMINUS"
+  "UMENOS"
   };
 }
 

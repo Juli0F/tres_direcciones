@@ -138,11 +138,8 @@ public class parser extends java_cup.runtime.lr_parser {
 
 
 	public void syntax_error(Symbol s) {
-            List<Integer> in = expected_token_ids();
-            for (Integer integer : in) {
-                System.out.println("Se esperaba :"+ sym.terminalNames[integer]);
-            }
-  report_error("Error de sintaxis en linea [ " + s.left+", "+s.right+" ]", null);
+
+  report_error("Error de sintaxis en linea " + s.left, null);
 }
 
 public void unrecovered_syntax_error(Symbol s) throws
@@ -250,7 +247,7 @@ class CUP$parser$actions {
 		int exleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int exright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		Expresion ex = (Expresion)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 RESULT = new Asignacion(id,ex,idleft,idright);
+		 RESULT = new Asignacion(id,ex,idleft,idright);			 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("asignacion",3, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -265,7 +262,7 @@ class CUP$parser$actions {
 		int exp1left = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int exp1right = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		Expresion exp1 = (Expresion)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 RESULT = new Suma(exp,exp1,expleft,expright); 
+		 RESULT = new Suma(exp,exp1,expleft,expright); 			 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("e",4, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -280,7 +277,7 @@ class CUP$parser$actions {
 		int exp1left = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int exp1right = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		Expresion exp1 = (Expresion)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 RESULT = new Multiplicacion(exp,exp1,expleft,expright); 
+		 RESULT = new Multiplicacion(exp,exp1,expleft,expright); 	 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("e",4, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -295,7 +292,7 @@ class CUP$parser$actions {
 		int exp1left = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int exp1right = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		Expresion exp1 = (Expresion)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 RESULT = new Resta(exp,exp1,expleft,expright); 
+		 RESULT = new Resta(exp,exp1,expleft,expright); 		 	 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("e",4, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -310,19 +307,19 @@ class CUP$parser$actions {
 		int exp1left = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int exp1right = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		Expresion exp1 = (Expresion)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 RESULT = new Division(exp,exp1,expleft,expright); 
+		 RESULT = new Division(exp,exp1,expleft,expright); 		 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("e",4, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 10: // e ::= UMINUS e 
+          case 10: // e ::= UMENOS e 
             {
               Expresion RESULT =null;
 		int expleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int expright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		Expresion exp = (Expresion)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 RESULT = new UMenos(exp,expleft,expright); 
+		 RESULT = new UMenos(exp,0,0); 							 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("e",4, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -334,7 +331,7 @@ class CUP$parser$actions {
 		int idleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int idright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String id = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 RESULT = new Identificador(id,idleft,idright); 
+		 RESULT = new Identificador(id,idleft,idright); 		 	 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("e",4, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -370,7 +367,7 @@ class CUP$parser$actions {
 		int expleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int expright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		Object exp = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		RESULT = new Primitivo(String.valueOf(exp) , expleft,expright);
+		 RESULT = new Primitivo(String.valueOf(exp) , expleft,expright);
               CUP$parser$result = parser.getSymbolFactory().newSymbol("f",5, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
