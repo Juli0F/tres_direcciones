@@ -27,13 +27,13 @@ public class Asignacion extends Expresion{
 
     @Override
     public Object interpretar(Tabla tabla, Arbol arbol) {
-        Principal.CODE += "\n";
-        Principal.CODE += "t"+Principal.CONTADOR+ " = " + this.expresion.interpretar(tabla, arbol);
-        Principal.CONTADOR++;
-        Principal.CODE = id+" = t"+(Principal.CONTADOR-1);
         
-        Principal.lstCode.add(Principal.CODE);
-        System.out.println(Principal.CODE);
+        String cadenaI = (String)this.expresion.interpretar(tabla, arbol);
+        Principal.CONTADOR++;
+        String cadena = "\n"+ id+" = "+cadenaI+"\n\n";
+        
+        Principal.lstCode.add(cadena);
+        //System.out.println(Principal.CODE);
         
         Principal.CONTADOR = 0;
         

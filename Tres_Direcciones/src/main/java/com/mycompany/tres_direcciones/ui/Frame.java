@@ -5,7 +5,6 @@
  */
 package com.mycompany.tres_direcciones.ui;
 
-
 import com.mycompany.tres_direcciones.principal.Principal;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -25,6 +24,8 @@ public class Frame extends javax.swing.JFrame {
      */
     public Frame() {
         initComponents();
+        jTextArea1.setText("x = 25 + id1 * (5 / 13) + id2;\n"
+                + "x = 25 + id1 * (5 / 13) + id2;");
     }
 
     /**
@@ -43,7 +44,8 @@ public class Frame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         paneImg = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jlabel1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,20 +98,25 @@ public class Frame extends javax.swing.JFrame {
 
         paneImg.setBorder(javax.swing.BorderFactory.createTitledBorder("C3D"));
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jlabel1.setColumns(20);
+        jlabel1.setRows(5);
+        jScrollPane2.setViewportView(jlabel1);
 
         javax.swing.GroupLayout paneImgLayout = new javax.swing.GroupLayout(paneImg);
         paneImg.setLayout(paneImgLayout);
         paneImgLayout.setHorizontalGroup(
             paneImgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneImgLayout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
+                .addContainerGap())
         );
         paneImgLayout.setVerticalGroup(
             paneImgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+            .addGroup(paneImgLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -152,19 +159,19 @@ public class Frame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
         
         Principal principal = new Principal();
-
-        if(!(jTextArea1.getText().equals(""))){
+        
+        if (!(jTextArea1.getText().equals(""))) {
             
             principal.compilar(jTextArea1.getText());
-            jLabel1.setText(Principal.CODE);
-//            for (String string : Principal.lstCode) {
-//                jLabel1.setText(string);
-//            }
             
-        }else{
+            for (String string : Principal.lstCode) {
+                System.out.println(string);
+                jlabel1.setText(jlabel1.getText()+string);
+            }
+            
+        } else {
             System.out.println("Else");
         }
 
@@ -206,14 +213,15 @@ public class Frame extends javax.swing.JFrame {
         });
     }
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jlabel1;
     private javax.swing.JLabel lblResultado;
     private javax.swing.JPanel paneImg;
     // End of variables declaration//GEN-END:variables

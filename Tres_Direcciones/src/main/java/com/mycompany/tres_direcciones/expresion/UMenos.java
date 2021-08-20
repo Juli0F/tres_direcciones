@@ -26,11 +26,15 @@ public class UMenos extends Expresion{
 
     @Override
     public Object interpretar(Tabla tabla, Arbol arbol) {
- //       int contador = Principal.CONTADOR;
-        Principal.CODE += "\n";
-        Principal.CODE += "t"+Principal.CONTADOR+ " = -" + this.exp.interpretar(tabla, arbol);
+        String left = (String) exp.interpretar(tabla, arbol);
+        
+        String cadena = "t"+Principal.CONTADOR ;
+        String cat = "t"+Principal.CONTADOR+" = -"+ left+"\n";
+        Principal.lstCode.add(cat);
+        
         Principal.CONTADOR++;
-        return "t"+(Principal.CONTADOR-1);
+        
+        return cadena ;
     }
 
     @Override

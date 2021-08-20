@@ -27,10 +27,14 @@ public class Resta extends Expresion{
 
     @Override
     public Object interpretar(Tabla tabla, Arbol arbol) {
-        Principal.CODE += "\n";
-        Principal.CODE += "t"+Principal.CONTADOR+ " = " + this.expLeft.interpretar(tabla, arbol) +" - " + this.expRight.interpretar(tabla, arbol);
+        String left = (String) expLeft.interpretar(tabla, arbol);
+        String right = (String) expRight.interpretar(tabla, arbol);
+        String cadena = "t"+Principal.CONTADOR ;
+        String cat =  "t"+Principal.CONTADOR+" = "+ left +" - "+right+"\n";
+        Principal.lstCode.add(cat);
         Principal.CONTADOR++;
-        return "t"+(Principal.CONTADOR-1);
+        
+        return cadena ;
     }
 
     @Override

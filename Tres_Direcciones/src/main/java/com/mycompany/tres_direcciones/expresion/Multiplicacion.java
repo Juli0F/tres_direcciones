@@ -14,10 +14,10 @@ import com.mycompany.tres_direcciones.ts.Tabla;
  *
  * @author julio
  */
-public class Multiplicacion extends Expresion{
+public class Multiplicacion extends Expresion {
 
-   private Expresion expLeft;
-   private Expresion expRight;
+    private Expresion expLeft;
+    private Expresion expRight;
 
     public Multiplicacion(Expresion expLeft, Expresion expRight, int fila, int columna) {
         super(fila, columna);
@@ -27,18 +27,19 @@ public class Multiplicacion extends Expresion{
 
     @Override
     public Object interpretar(Tabla tabla, Arbol arbol) {
- //       int contador = Principal.CONTADOR;
-        Principal.CODE += "\n";
-        Principal.CODE += "t"+Principal.CONTADOR+ " = " + this.expLeft.interpretar(tabla, arbol) +" * " + this.expRight.interpretar(tabla, arbol);
+        String left = (String) expLeft.interpretar(tabla, arbol);
+        String right = (String) expRight.interpretar(tabla, arbol);
+        String cadena = "t" + Principal.CONTADOR;
+        String cat =cadena+ " = " + left + " * " + right + "\n";
+        Principal.lstCode.add(cat);
         Principal.CONTADOR++;
-        return "t"+(Principal.CONTADOR-1);
+
+        return cadena;
     }
 
     @Override
     public Nodo getNodo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-   
-   
-   
+
 }
