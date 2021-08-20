@@ -24,8 +24,8 @@ public class Frame extends javax.swing.JFrame {
      */
     public Frame() {
         initComponents();
-        jTextArea1.setText("x = 25 + id1 * (5 / 13) + id2;\n"
-                + "x = 25 + id1 * (5 / 13) + id2;");
+        jTextArea1.setText("x = 25 + id1 * (-5 / 13) + id2;\n"
+                + "x = 25 + id1 * (-5 / 13) + id2;");
     }
 
     /**

@@ -29,7 +29,7 @@ public class UMenos extends Expresion{
         String left = (String) exp.interpretar(tabla, arbol);
         
         String cadena = "t"+Principal.CONTADOR ;
-        String cat = "t"+Principal.CONTADOR+" = -"+ left+"\n";
+        String cat = cadena+" = -"+ left+"\n";
         Principal.lstCode.add(cat);
         
         Principal.CONTADOR++;
