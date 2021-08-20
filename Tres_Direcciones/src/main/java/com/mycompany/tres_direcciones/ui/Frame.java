@@ -98,7 +98,9 @@ public class Frame extends javax.swing.JFrame {
 
         paneImg.setBorder(javax.swing.BorderFactory.createTitledBorder("C3D"));
 
+        jlabel1.setEditable(false);
         jlabel1.setColumns(20);
+        jlabel1.setFont(new java.awt.Font("Dialog", 2, 15)); // NOI18N
         jlabel1.setRows(5);
         jScrollPane2.setViewportView(jlabel1);
 

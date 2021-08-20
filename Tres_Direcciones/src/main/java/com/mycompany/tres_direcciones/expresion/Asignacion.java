@@ -33,8 +33,13 @@ public class Asignacion extends Expresion{
         String cadena = "\n"+ id+" = "+cadenaI+"\n\n";
         
         Principal.lstCode.add(cadena);
+        cadena = "";
+        for (int i = 0; i < cadena.length(); i++) {
+            cadena +="_";
+            
+        }
         //System.out.println(Principal.CODE);
-        
+        Principal.lstCode.add(cadena);
         Principal.CONTADOR = 0;
         
         return "";
